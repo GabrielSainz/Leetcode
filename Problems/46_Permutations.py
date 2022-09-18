@@ -4,6 +4,7 @@
 # You can return the answer in any order.
 
 from math import factorial
+from unittest import result
 
 
 class Solution:
@@ -70,22 +71,39 @@ class OtherSolution:
     def permute(self, nums):
         temp = []
         if len(nums) == 1: 
-            return [nums.copy()]
+            return [nums[:]]
 
         for i in set(nums): 
-            temp_nums = nums.copy()
+            temp_nums = nums[:]
             temp_nums.remove(i)
             for sub_perm in self.permute(temp_nums): 
-                
-                if isinstance([sub_perm][0], int): 
-                    temp.extend([[i] + [sub_perm]])    
-                else: 
-                    temp.extend([[i] + sub_perm])    
+                temp.extend([[i] + sub_perm])    
+
         return temp
 
 
-n = 10
-b = [12,3,4,5,6]
+b = [1,1,1,1]
 
 print(OtherSolution().permute(b))
-print(factorial(n))
+
+class OtherSolution2:
+
+    def permute(self, nums):
+        result = []
+
+        if (len(nums) == 1): 
+            return [nums[:]]
+
+        for i in range(len(nums)): 
+            n = nums.pop(0)
+            perms = self.permute(nums)
+            for perm in perms: 
+                perm.append(n)
+            
+            result.extend(perms)
+            nums.append(n)
+            
+        return result
+
+
+print(OtherSolution2().permute(b))
