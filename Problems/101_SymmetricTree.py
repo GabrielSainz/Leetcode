@@ -1,14 +1,11 @@
 '''
-100. Same Tree
+100. Symmetric Tree
 
-Given the roots of two binary trees p and q, write a function to check if they
-are the same or not.
+Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
 
-Two binary trees are considered the same if they are structurally identical, 
-and the nodes have the same value.
 
 Example: 
-Input: p = [1,2,3], q = [1,2,3]
+Input: root = [1,2,2,3,4,4,3]
 Output: true
 '''
 
@@ -19,6 +16,7 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 
 
 class Solution:
@@ -32,4 +30,12 @@ class Solution:
         return (self.isSameTree(p.left, q.left) and 
                 self.isSameTree(p.right, q.right))
         
-        
+       
+    def isSymmetric(self, root) -> bool:
+
+        return self.isSameTree(self.left, self.left)
+
+
+p = 1
+if not p: 
+    print(True)
